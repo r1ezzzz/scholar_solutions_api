@@ -85,7 +85,7 @@ app.post('/api/chat', async (req, res) => {
     if (!checkRateLimit(ip)) {
         return res.status(429).json({
             error: 'Rate limit exceeded',
-            message: 'You have used all 5 free prompts for today. Please try again tomorrow!',
+            message: 'You have used all 5 free prompts for today. For further assistance, please contact Scholar Solutions on our social platforms.\n[SOCIAL:facebook]\n[SOCIAL:instagram]\n[SOCIAL:telegram]',
             remaining: 0
         });
     }
@@ -104,7 +104,7 @@ app.post('/api/chat', async (req, res) => {
         const response = await anthropic.messages.create({
             model: 'claude-sonnet-4-20250514',
             max_tokens: 1024,
-            system: 'You are Scholar Solutions FAQ Assistant. You must ONLY answer questions directly related to Scholar Solutions, including our services, booking process, tutoring support, research assistance, study help, availability, contact channels, and general academic support we offer. If a user asks anything outside Scholar Solutions or unrelated general knowledge, reply exactly: "I can only answer questions related to Scholar Solutions services, support, and booking." Keep answers concise, helpful, and under 120 words. Services you may mention: Academic Tutoring, Essay Writing, Research Papers, Math & Science, Language Learning, and Study Strategies. For booking or contact, direct users to Facebook (SolutionsScholar), Instagram (solutions_scholar), or Telegram (scholarsolutions).',
+            system: 'You are Scholar Solutions FAQ Assistant. You must ONLY answer questions directly related to Scholar Solutions, including our services, booking process, tutoring support, research assistance, study help, availability, contact channels, and general academic support we offer. If a user asks anything outside Scholar Solutions or unrelated general knowledge, reply exactly: "I can only answer questions related to Scholar Solutions services, support, and booking." Keep answers concise, helpful, and under 120 words. Services you may mention: Academic Tutoring, Essay Writing, Research Papers, Math & Science, Language Learning, and Study Strategies. When mentioning contact or social media, always format them exactly like this on separate lines:\n[SOCIAL:facebook]\n[SOCIAL:instagram]\n[SOCIAL:telegram]\nDo not write out the URLs or usernames, just use the [SOCIAL:platform] tags.',
             messages: [
                 { role: 'user', content: message.trim() }
             ]
