@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 
 // CORS - allow your domain
 app.use(cors({
-    origin: ['https://scholarsolutions.site', 'http://scholarsolutions.site', 'http://localhost:3000'],
+    origin: '*',
     methods: ['POST', 'GET'],
     allowedHeaders: ['Content-Type']
 }));
