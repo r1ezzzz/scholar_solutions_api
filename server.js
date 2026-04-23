@@ -85,7 +85,7 @@ app.post('/api/chat', async (req, res) => {
     if (!checkRateLimit(ip)) {
         return res.status(429).json({
             error: 'Rate limit exceeded',
-            message: 'You have used all 5 free prompts for today. For further assistance, please contact Scholar Solutions on our social platforms.\n[SOCIAL:facebook]\n[SOCIAL:instagram]\n[SOCIAL:telegram]',
+            message: 'You have reached your daily limit. For further questions, contact us here!\n[SOCIAL:facebook]\n[SOCIAL:instagram]\n[SOCIAL:telegram]',
             remaining: 0
         });
     }
